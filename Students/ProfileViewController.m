@@ -21,6 +21,14 @@
 @implementation ProfileViewController
 
 - (IBAction)uploadPhotoAction:(id)sender {
+    UIImagePickerController *photoPicker = [[UIImagePickerController alloc] init];
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        NSLog(@"[TELLME] Camera is not available on this device.");
+    }
+    photoPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    //    [self presentModalViewController:photoPicker animated:YES];
+    [self presentViewController:photoPicker animated:YES completion:NULL];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
