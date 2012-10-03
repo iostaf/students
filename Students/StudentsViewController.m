@@ -31,7 +31,7 @@
     [super viewDidLoad];
 
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewStudentAction:)];
     
     [self fillStudents];
 }
@@ -40,6 +40,30 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Actions
+
+- (void)insertNewStudentAction:(id)sender
+{
+    // Create new student
+    Student *johnDoe = [Student new];
+    johnDoe.identifier = [[NSNumber alloc] initWithInt: 3];
+    johnDoe.fname =  @"John";
+    johnDoe.lname =  @"Doe";
+    
+    // POST to '/students'
+    [[RKObjectManager sharedManager] postObject:johnDoe usingBlock:^(RKObjectLoader *loader)
+     {
+         [loader setOnDidFailLoadWithError:^(NSError *error)
+          {
+              NSLog(@"Error is %@", error);
+          }];
+     }];
+    
+    [_students insertObject:johnDoe atIndex:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 #pragma mark - Table view data source
