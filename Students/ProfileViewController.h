@@ -10,4 +10,6 @@
 
 @interface ProfileViewController : UIViewController
 
+- (void)setStudentProfile:(id)newStudentProfile;
+
 @end

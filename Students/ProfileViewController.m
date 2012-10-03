@@ -7,8 +7,14 @@
 //
 
 #import "ProfileViewController.h"
+#import "RestKit/RestKit.h"
+#import "Student.h"
 
 @interface ProfileViewController ()
+
+@property (strong, nonatomic) Student *student;
+@property (weak, nonatomic) IBOutlet UITextField *firstName;
+@property (weak, nonatomic) IBOutlet UITextField *lastName;
 
 @end
 
@@ -29,10 +35,46 @@
 	// Do any additional setup after loading the view.
 }
 
+- (void)setStudentProfile:(id)newStudentProfile
+{
+    if (_student != newStudentProfile) {
+        _student = newStudentProfile;
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    self.firstName.text = _student.fname;
+    self.lastName.text  = _student.lname;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    _student.fname = self.firstName.text;
+    _student.lname = self.lastName.text;
+    
+    [[RKObjectManager sharedManager] putObject:_student usingBlock:^(RKObjectLoader *loader)
+     {
+         [loader setOnDidFailLoadWithError:^(NSError *error)
+          {
+              NSLog(@"Error is %@", error);
+          }];
+     }];
+    
+    [super viewWillDisappear:animated];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidUnload {
+    [self setFirstName:nil];
+    [self setLastName:nil];
+    [super viewDidUnload];
+}
 @end

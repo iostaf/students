@@ -7,6 +7,7 @@
 //
 
 #import "StudentsViewController.h"
+#import "ProfileViewController.h"
 #import "Student.h"
 #import "RestKit/RestKit.h"
 
@@ -142,6 +143,17 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+#pragma mark - Storyboard Segue notifications
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"showProfile"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        Student *student = _students[indexPath.row];
+        [[segue destinationViewController] setStudentProfile:student];
+    }
 }
 
 #pragma mark - My code
