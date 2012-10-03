@@ -13,6 +13,8 @@
 
 @interface StudentsViewController () {
     NSMutableArray *_students;
+    NSIndexPath    *currentIndexPath;
+    IBOutlet UITableView *studentsTableView;
 }
 @end
 
@@ -23,6 +25,7 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        currentIndexPath = nil;
     }
     return self;
 }
@@ -35,6 +38,14 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewStudentAction:)];
     
     [self fillStudents];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (currentIndexPath != nil) {
+        [studentsTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:currentIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -150,8 +161,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showProfile"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        Student *student = _students[indexPath.row];
+        currentIndexPath = [self.tableView indexPathForSelectedRow];
+        Student *student = _students[currentIndexPath.row];
         [[segue destinationViewController] setStudentProfile:student];
     }
 }
@@ -216,4 +227,9 @@
      }];
 }
 
+- (void)viewDidUnload {
+    [self setTableView:nil];
+    studentsTableView = nil;
+    [super viewDidUnload];
+}
 @end

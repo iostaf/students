@@ -36,6 +36,9 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Students" id="m1S-9F-LbI"/>
+                    <connections>
+                        <outlet property="studentsTableView" destination="wPe-Wg-fvO" id="Rr3-nw-bt7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o3V-P4-7Ir" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
