@@ -20,6 +20,9 @@
 
 @implementation ProfileViewController
 
+- (IBAction)uploadPhotoAction:(id)sender {
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -77,4 +80,12 @@
     [self setLastName:nil];
     [super viewDidUnload];
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+    if (theTextField == self.firstName || theTextField == self.lastName) {
+        [theTextField resignFirstResponder];
+    }
+    return YES;
+}
+
 @end
