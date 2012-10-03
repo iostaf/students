@@ -7,10 +7,12 @@
 //
 
 #import "StudentsViewController.h"
+#import "Student.h"
 #import "RestKit/RestKit.h"
 
-@interface StudentsViewController ()
-
+@interface StudentsViewController () {
+    NSMutableArray *_students;
+}
 @end
 
 @implementation StudentsViewController
@@ -28,11 +30,10 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+    
+    [self fillStudents];
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,25 +46,19 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return _students.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Student"];
+    Student *student = _students[indexPath.row];
+    cell.textLabel.text = [student description];
     return cell;
 }
 
@@ -117,6 +112,66 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+#pragma mark - My code
+
+- (void) initObjectManager
+{
+    RKObjectManager * manager     = [RKObjectManager managerWithBaseURLString:@"http://localhost:9292"];
+    manager.acceptMIMEType        = RKMIMETypeJSON;
+    manager.serializationMIMEType = RKMIMETypeJSON;
+}
+
+- (void) setupStudentMapping
+{
+    // Set up mapping
+    RKObjectMapping* studentMapping = [RKObjectMapping mappingForClass:[Student class]];
+    [studentMapping mapKeyPath:@"id" toAttribute:@"identifier"];
+    [studentMapping mapKeyPath:@"fname" toAttribute:@"fname"];
+    [studentMapping mapKeyPath:@"lname" toAttribute:@"lname"];
+    [[RKObjectManager sharedManager].mappingProvider setMapping:studentMapping forKeyPath:@"students"];
+    
+    // Set up searialization mapping
+    RKObjectMapping *studentSerializationMapping = [RKObjectMapping
+                                                    mappingForClass:[NSMutableDictionary class]];
+    [studentSerializationMapping mapKeyPath:@"identifier" toAttribute:@"id"];
+    [studentSerializationMapping mapKeyPath:@"fname" toAttribute:@"fname"];
+    [studentSerializationMapping mapKeyPath:@"lname" toAttribute:@"lname"];
+    [[RKObjectManager sharedManager].mappingProvider setSerializationMapping:studentSerializationMapping forClass:[Student class]];
+    
+    // Set up routes
+    [[RKObjectManager sharedManager].router routeClass:[Student class] toResourcePath:@"/students/:identifier"];
+    [[RKObjectManager sharedManager].router routeClass:[Student class] toResourcePath:@"/students" forMethod:RKRequestMethodPOST];
+}
+
+- (void) fillStudents
+{
+    if (!_students) {
+        _students = [[NSMutableArray alloc] init];
+    }
+    [_students removeAllObjects];
+    
+    [self initObjectManager];
+    [self setupStudentMapping];
+    
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:@"/students" usingBlock:^(RKObjectLoader *loader)
+     {
+         [loader setOnDidLoadObjects:^(NSArray *students)
+          {
+              int index = 0;
+              for (Student *student in students) {
+                  NSLog(@"Student's first name is: %@", student.fname);
+                  [_students addObject:student];
+                  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index++ inSection:0];
+                  [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+              }
+          }];
+         [loader setOnDidFailLoadWithError:^(NSError *error)
+          {
+              NSLog(@"Error is %@", error);
+          }];
+     }];
 }
 
 @end

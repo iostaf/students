@@ -18,6 +18,7 @@
 		81BC91AA161C9A3600BA0175 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BC91A9161C9A3600BA0175 /* libxml2.dylib */; };
 		81BC91AC161C9A4300BA0175 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BC91AB161C9A4300BA0175 /* QuartzCore.framework */; };
 		81BC91AD161C9A4E00BA0175 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BC9194161C996B00BA0175 /* libRestKit.a */; };
+		81BC91BD161C9DAB00BA0175 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BC91BC161C9DAB00BA0175 /* Student.m */; };
 		81ED886D161C8D1F002D5361 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81ED886C161C8D1F002D5361 /* UIKit.framework */; };
 		81ED886F161C8D1F002D5361 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81ED886E161C8D1F002D5361 /* Foundation.framework */; };
 		81ED8871161C8D1F002D5361 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81ED8870161C8D1F002D5361 /* CoreGraphics.framework */; };
@@ -88,6 +89,8 @@
 		81BC91A7161C9A2B00BA0175 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		81BC91A9161C9A3600BA0175 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		81BC91AB161C9A4300BA0175 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		81BC91BB161C9DAB00BA0175 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
+		81BC91BC161C9DAB00BA0175 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
 		81ED8868161C8D1F002D5361 /* Students.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Students.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81ED886C161C8D1F002D5361 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		81ED886E161C8D1F002D5361 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -180,6 +183,8 @@
 				81674180161C926700E0BB6B /* ProfileViewController.h */,
 				81674181161C926700E0BB6B /* ProfileViewController.m */,
 				8167417D161C923A00E0BB6B /* StudentsViewController.m */,
+				81BC91BB161C9DAB00BA0175 /* Student.h */,
+				81BC91BC161C9DAB00BA0175 /* Student.m */,
 				81ED887C161C8D1F002D5361 /* StudentsAppDelegate.m */,
 				81B0F903161C8F74003839B5 /* Students.storyboard */,
 				81ED8873161C8D1F002D5361 /* Supporting Files */,
@@ -317,6 +322,7 @@
 				81ED887D161C8D1F002D5361 /* StudentsAppDelegate.m in Sources */,
 				8167417E161C923A00E0BB6B /* StudentsViewController.m in Sources */,
 				81674182161C926700E0BB6B /* ProfileViewController.m in Sources */,
+				81BC91BD161C9DAB00BA0175 /* Student.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
