@@ -7,6 +7,7 @@
 //
 
 #import "StudentsViewController.h"
+#import "RestKit/RestKit.h"
 
 @interface StudentsViewController ()
 
