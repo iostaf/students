@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8167417E161C923A00E0BB6B /* StudentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8167417D161C923A00E0BB6B /* StudentsViewController.m */; };
+		81674182161C926700E0BB6B /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81674181161C926700E0BB6B /* ProfileViewController.m */; };
+		81B0F904161C8F74003839B5 /* Students.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81B0F903161C8F74003839B5 /* Students.storyboard */; };
 		81ED886D161C8D1F002D5361 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81ED886C161C8D1F002D5361 /* UIKit.framework */; };
 		81ED886F161C8D1F002D5361 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81ED886E161C8D1F002D5361 /* Foundation.framework */; };
 		81ED8871161C8D1F002D5361 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81ED8870161C8D1F002D5361 /* CoreGraphics.framework */; };
@@ -19,6 +22,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8167417C161C923A00E0BB6B /* StudentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentsViewController.h; sourceTree = "<group>"; };
+		8167417D161C923A00E0BB6B /* StudentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentsViewController.m; sourceTree = "<group>"; };
+		81674180161C926700E0BB6B /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		81674181161C926700E0BB6B /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		81B0F903161C8F74003839B5 /* Students.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Students.storyboard; path = ../../students/Students/Students.storyboard; sourceTree = "<group>"; };
 		81ED8868161C8D1F002D5361 /* Students.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Students.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81ED886C161C8D1F002D5361 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		81ED886E161C8D1F002D5361 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -79,7 +87,12 @@
 			isa = PBXGroup;
 			children = (
 				81ED887B161C8D1F002D5361 /* StudentsAppDelegate.h */,
+				8167417C161C923A00E0BB6B /* StudentsViewController.h */,
+				81674180161C926700E0BB6B /* ProfileViewController.h */,
+				81674181161C926700E0BB6B /* ProfileViewController.m */,
+				8167417D161C923A00E0BB6B /* StudentsViewController.m */,
 				81ED887C161C8D1F002D5361 /* StudentsAppDelegate.m */,
+				81B0F903161C8F74003839B5 /* Students.storyboard */,
 				81ED8873161C8D1F002D5361 /* Supporting Files */,
 			);
 			path = Students;
@@ -155,6 +168,7 @@
 				81ED887F161C8D1F002D5361 /* Default.png in Resources */,
 				81ED8881161C8D1F002D5361 /* Default@2x.png in Resources */,
 				81ED8883161C8D1F002D5361 /* Default-568h@2x.png in Resources */,
+				81B0F904161C8F74003839B5 /* Students.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +181,8 @@
 			files = (
 				81ED8879161C8D1F002D5361 /* main.m in Sources */,
 				81ED887D161C8D1F002D5361 /* StudentsAppDelegate.m in Sources */,
+				8167417E161C923A00E0BB6B /* StudentsViewController.m in Sources */,
+				81674182161C926700E0BB6B /* ProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
