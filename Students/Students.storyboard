@@ -99,6 +99,10 @@
                                     <action selector="uploadPhotoAction:" destination="lHF-bh-gDa" eventType="touchUpInside" id="ah8-Tt-Znp"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="i8n-GF-zcj">
+                                <rect key="frame" x="80" y="138" width="160" height="160"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -106,6 +110,7 @@
                     <connections>
                         <outlet property="firstName" destination="fBP-6o-NOT" id="rA1-WY-jP4"/>
                         <outlet property="lastName" destination="exS-s7-jCB" id="tg1-X6-Dee"/>
+                        <outlet property="profileImageView" destination="i8n-GF-zcj" id="WOn-fU-lbp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pO3-31-AKq" userLabel="First Responder" sceneMemberID="firstResponder"/>

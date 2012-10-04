@@ -15,6 +15,7 @@
 @property (strong, nonatomic) Student *student;
 @property (weak, nonatomic) IBOutlet UITextField *firstName;
 @property (weak, nonatomic) IBOutlet UITextField *lastName;
+@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 
 @end
 
@@ -22,6 +23,7 @@
 
 - (IBAction)uploadPhotoAction:(id)sender {
     UIImagePickerController *photoPicker = [[UIImagePickerController alloc] init];
+    photoPicker.delegate = self;
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
         NSLog(@"[TELLME] Camera is not available on this device.");
@@ -29,6 +31,23 @@
     photoPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     //    [self presentModalViewController:photoPicker animated:YES];
     [self presentViewController:photoPicker animated:YES completion:NULL];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker
+        didFinishPickingImage:(UIImage *)image
+                  editingInfo:(NSDictionary *)editingInfo
+{
+    // Dismiss the image selection, hide the picker and
+    // show the image view with the picked image
+    [picker dismissModalViewControllerAnimated:YES];
+    // Show image on the screen
+    self.profileImageView.image = image;
+    
+    // Upload image to the server
+    RKParams *params = [RKParams params];
+    NSData *imageData = UIImagePNGRepresentation(image);
+    [params setData:imageData MIMEType:@"image/png" forParam:@"image1"];
+    [[RKClient sharedClient] post:@"/students/image" params:params delegate:self];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -86,6 +105,7 @@
 - (void)viewDidUnload {
     [self setFirstName:nil];
     [self setLastName:nil];
+    [self setProfileImageView:nil];
     [super viewDidUnload];
 }
 

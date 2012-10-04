@@ -59,6 +59,13 @@ class SchoolServer
 					else
 						[404, {'Content-Type' => 'text/html'}, ['Page Not Found']]
 					end
+				elsif @req.path =~ /^\/students\/image/i
+					if @req.post?
+						tellme 'The image has beeen uploaded.'
+						[200, {'Content-Type' => 'application/json'}, []]
+					else
+						[404, {'Content-Type' => 'text/html'}, ['Page Not Found']]
+					end
 				else
 					[404, {'Content-Type' => 'text/html'}, ['Page Not Found']]
 				end
