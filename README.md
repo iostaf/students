@@ -20,3 +20,12 @@ This project contains two components:
 1. Install Xcode 4.5
 2. Open Students.xcodeproj file by Xcode
 3. Hit run button
+
+
+### How to add image to iPhone Simulator
+
+1. Drag it to simulator, then Safari opens (or browse to the Image in the internet using Safari)
+2. Hold your click on the image
+3. When the pop-up appears, choose Save Image and enjoy ;)
+
+Origin: <http://stackoverflow.com/a/2039856>

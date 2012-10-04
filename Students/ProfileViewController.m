@@ -29,7 +29,6 @@
         NSLog(@"[TELLME] Camera is not available on this device.");
     }
     photoPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    //    [self presentModalViewController:photoPicker animated:YES];
     [self presentViewController:photoPicker animated:YES completion:NULL];
 }
 
